@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infographic skill map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one reading column. Two diagrams (structure, then order and loops), then tables. Tokens follow the personal design system (Public Sans, Lora, teal ramp). Dark values are derived, not taken from the system. */
+:root {
+  --surface-page: #FFFFFF;
+  --surface-quiet: #F4F4F7;
+  --surface-card: #FFFFFF;
+  --border-default: #D4D4DA;
+  --border-strong: #B8B8C2;
+  --text-primary: #1A1A2E;
+  --text-secondary: #55556A;
+  --mark: #1D6068;
+  --mark-soft: #E4F4F4;
+  --orch-fill: #1D6068;
+  --orch-text: #FFFFFF;
+  --secondary: #C39A44;
+  --warm-soft: #F5F0E6;
+  --warm-text: #6B5B2E;
+  --action: #376DA4;
+  --action-soft: #ECF2FA;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --radius-default: 6px;
+  --radius-lg: 8px;
+  --font-sans: "Public Sans", system-ui, sans-serif;
+  --font-serif: "Lora", Georgia, serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-page: #12141C;
+    --surface-quiet: #1B1F2B;
+    --surface-card: #171A24;
+    --border-default: #2E3342;
+    --border-strong: #454B5E;
+    --text-primary: #ECEDF2;
+    --text-secondary: #B6BAC8;
+    --mark: #7CC9CC;
+    --mark-soft: #1B3438;
+    --orch-fill: #2A7A82;
+    --orch-text: #FFFFFF;
+    --secondary: #D9B25E;
+    --warm-soft: #38301C;
+    --warm-text: #E3C987;
+    --action: #8DB8E3;
+    --action-soft: #1D2A3A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --surface-page: #12141C;
+  --surface-quiet: #1B1F2B;
+  --surface-card: #171A24;
+  --border-default: #2E3342;
+  --border-strong: #454B5E;
+  --text-primary: #ECEDF2;
+  --text-secondary: #B6BAC8;
+  --mark: #7CC9CC;
+  --mark-soft: #1B3438;
+  --orch-fill: #2A7A82;
+  --orch-text: #FFFFFF;
+  --secondary: #D9B25E;
+  --warm-soft: #38301C;
+  --warm-text: #E3C987;
+  --action: #8DB8E3;
+  --action-soft: #1D2A3A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font: 400 16px/1.6 var(--font-sans);
+}
+main { max-width: 1100px; margin: 0 auto; padding: var(--space-2xl) var(--space-md) 64px; }
+h1, h2 { font-family: var(--font-serif); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: 2.1rem; line-height: 1.2; }
+h2 { font-size: 1.4rem; line-height: 1.3; margin-top: var(--space-2xl); margin-bottom: var(--space-md); }
+p { margin: 0 0 var(--space-md); max-width: 66ch; }
+.lead { font-size: 1.125rem; margin-top: var(--space-md); max-width: 62ch; }
+code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
+
+.legend { display: flex; flex-wrap: wrap; gap: var(--space-md) var(--space-lg); margin: var(--space-lg) 0 0; padding: 0; list-style: none; font-size: 0.9rem; color: var(--text-secondary); }
+.legend li { display: flex; align-items: center; gap: var(--space-sm); }
+.swatch { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--mark); background: var(--mark-soft); flex: none; }
+.swatch.orch { background: var(--orch-fill); border-color: var(--orch-fill); }
+.swatch.exist { background: var(--warm-soft); border-color: var(--secondary); }
+.swatch.loopkey { width: 28px; height: 0; border: 0; border-top: 2px solid var(--action); border-radius: 0; background: none; }
+
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-md); margin-top: var(--space-xl); }
+.status > div { background: var(--surface-quiet); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: var(--space-md) var(--space-lg); }
+.status h3 { margin: 0 0 var(--space-sm); font-size: 0.95rem; font-weight: 600; }
+.status p { margin: 0; font-size: 0.95rem; color: var(--text-secondary); max-width: none; }
+
+figure { margin: 0 0 var(--space-lg); }
+.scroll { overflow-x: auto; border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--surface-card); }
+.scroll > svg { display: block; width: 100%; min-width: 900px; height: auto; }
+figcaption { margin-top: var(--space-sm); font-size: 0.9rem; color: var(--text-secondary); max-width: 80ch; }
+
+/* diagram parts */
+.n-step { fill: var(--mark-soft); stroke: var(--mark); stroke-width: 1.5; }
+.n-exist { fill: var(--warm-soft); stroke: var(--secondary); stroke-width: 1.5; }
+.n-orch { fill: var(--orch-fill); stroke: var(--orch-fill); }
+.n-rec { fill: var(--surface-quiet); stroke: var(--border-strong); stroke-width: 1.5; }
+.ln { stroke: var(--text-secondary); stroke-width: 1.5; fill: none; }
+.loop { stroke: var(--action); stroke-width: 1.8; fill: none; }
+.mk { fill: var(--text-secondary); }
+.mk-loop { fill: var(--action); }
+svg text { font-family: var(--font-sans); fill: var(--text-primary); }
+.t-step { font-size: 11px; fill: var(--text-secondary); }
+.t-name { font-size: 13.5px; font-weight: 600; }
+.t-skill { font-family: var(--font-mono); font-size: 10.5px; fill: var(--text-secondary); }
+.t-exist { font-size: 10.5px; font-style: italic; fill: var(--warm-text); }
+.t-orch { fill: var(--orch-text); }
+.t-lab { font-size: 11.5px; fill: var(--text-secondary); }
+.t-loop { font-size: 11.5px; font-weight: 500; fill: var(--action); paint-order: stroke; stroke: var(--surface-card); stroke-width: 4px; stroke-linejoin: round; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--border-default); border-radius: var(--radius-lg); }
+table { border-collapse: collapse; width: 100%; min-width: 780px; font-size: 0.92rem; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--border-default); }
+th { background: var(--surface-quiet); font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); }
+tbody tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 500; }
+.sk { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 9999px; font-size: 0.78rem; font-weight: 600; border: 1px solid var(--mark); color: var(--mark); background: var(--mark-soft); white-space: nowrap; }
+.pill.exist { border-color: var(--secondary); color: var(--warm-text); background: var(--warm-soft); }
+.pill.orch { border-color: var(--orch-fill); background: var(--orch-fill); color: var(--orch-text); }
+.chk b { font-weight: 600; }
+.chk div + div { margin-top: 4px; }
+.note { margin-top: var(--space-md); }
+ul.open { margin: 0; padding-left: 1.2em; max-width: 70ch; }
+ul.open li { margin-bottom: var(--space-sm); }
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.7rem; }
+  main { padding-top: var(--space-xl); }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Infographic skill map</h1>
+  <p class="lead">The process becomes eight skills: one orchestrator and seven step skills, one of which is your existing analytical techniques catalogue. Only the orchestrator knows the order. Step skills never call each other. When a check fails, a step reports where to go back to, and the orchestrator runs that loop.</p>
+
+  <ul class="legend" aria-label="Key">
+    <li><span class="swatch orch"></span>Orchestrator (new)</li>
+    <li><span class="swatch"></span>Step skill (new)</li>
+    <li><span class="swatch exist"></span>Existing skill</li>
+    <li><span class="swatch loopkey"></span>Loop back</li>
+  </ul>
+
+  <div class="status">
+    <div>
+      <h3>Agreed</h3>
+      <p>The seven steps, the shared vocabulary (outcome, message, story, narrative), step 2 using your analytical techniques catalogue, and use in both Claude and GitHub Copilot.</p>
+    </div>
+    <div>
+      <h3>Proposed here, for your review</h3>
+      <p>Intake in the orchestrator, the six loops and the loop limit, which step runs each check, and the skill names.</p>
+    </div>
+  </div>
+
+  <h2>How the skills connect</h2>
+  <figure>
+    <div class="scroll">
+      <svg viewBox="0 0 1100 372" role="img" aria-label="One orchestrator skill calls seven step skills one at a time. All eight skills read and write one shared process record.">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+          <marker id="ahl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-loop" d="M0,1 L9,5 L0,9 z"/></marker>
+        </defs>
+
+        <rect class="n-orch" x="400" y="18" width="300" height="68" rx="8"/>
+        <text class="t-orch" x="550" y="46" text-anchor="middle" style="font-family: var(--font-mono); font-size: 14px; font-weight: 600;">infographic-process</text>
+        <text class="t-orch" x="550" y="68" text-anchor="middle" style="font-size: 12px;">Orchestrator: order, checks, loops</text>
+
+        <line class="ln" x1="550" y1="86" x2="550" y2="118"/>
+        <line class="ln" x1="82" y1="118" x2="1018" y2="118"/>
+        <text class="t-lab" x="82" y="106">calls one step at a time and receives its report</text>
+        <line class="ln" x1="82" y1="118" x2="82" y2="148" marker-end="url(#ah)"/>
+        <line class="ln" x1="238" y1="118" x2="238" y2="148" marker-end="url(#ah)"/>
+        <line class="ln" x1="394" y1="118" x2="394" y2="148" marker-end="url(#ah)"/>
+        <line class="ln" x1="550" y1="118" x2="550" y2="148" marker-end="url(#ah)"/>
+        <line class="ln" x1="706" y1="118" x2="706" y2="148" marker-end="url(#ah)"/>
+        <line class="ln" x1="862" y1="118" x2="862" y2="148" marker-end="url(#ah)"/>
+        <line class="ln" x1="1018" y1="118" x2="1018" y2="148" marker-end="url(#ah)"/>
+
+        <rect class="n-step" x="26" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="82" y="172" text-anchor="middle">Step 1</text>
+        <text class="t-name" x="82" y="194" text-anchor="middle">Research</text>
+        <text class="t-skill" x="82" y="216" text-anchor="middle">research</text>
+
+        <rect class="n-exist" x="182" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="238" y="172" text-anchor="middle">Step 2</text>
+        <text class="t-name" x="238" y="194" text-anchor="middle">Analysis</text>
+        <text class="t-exist" x="238" y="216" text-anchor="middle">existing catalogue</text>
+
+        <rect class="n-step" x="338" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="394" y="172" text-anchor="middle">Step 3</text>
+        <text class="t-name" x="394" y="194" text-anchor="middle">Narrative</text>
+        <text class="t-skill" x="394" y="216" text-anchor="middle">narrative</text>
+
+        <rect class="n-step" x="494" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="550" y="172" text-anchor="middle">Step 4</text>
+        <text class="t-name" x="550" y="194" text-anchor="middle">Concept model</text>
+        <text class="t-skill" x="550" y="216" text-anchor="middle">concept-model</text>
+
+        <rect class="n-step" x="650" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="706" y="172" text-anchor="middle">Step 5</text>
+        <text class="t-name" x="706" y="194" text-anchor="middle">Rendering</text>
+        <text class="t-skill" x="706" y="216" text-anchor="middle">rendering</text>
+
+        <rect class="n-step" x="806" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="862" y="172" text-anchor="middle">Step 6</text>
+        <text class="t-name" x="862" y="194" text-anchor="middle">Build</text>
+        <text class="t-skill" x="862" y="216" text-anchor="middle">build</text>
+
+        <rect class="n-step" x="962" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="1018" y="172" text-anchor="middle">Step 7</text>
+        <text class="t-name" x="1018" y="194" text-anchor="middle">Validation</text>
+        <text class="t-skill" x="1018" y="216" text-anchor="middle">validation</text>
+
+        <line class="ln" x1="82" y1="236" x2="82" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <line class="ln" x1="238" y1="236" x2="238" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <line class="ln" x1="394" y1="236" x2="394" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <line class="ln" x1="550" y1="236" x2="550" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <line class="ln" x1="706" y1="236" x2="706" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <line class="ln" x1="862" y1="236" x2="862" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <line class="ln" x1="1018" y1="236" x2="1018" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text class="t-lab" x="160" y="272" text-anchor="middle">read and write</text>
+
+        <rect class="n-rec" x="26" y="300" width="1048" height="58" rx="8"/>
+        <text x="550" y="325" text-anchor="middle" style="font-size: 13.5px; font-weight: 600;">Process record (one file)</text>
+        <text class="t-lab" x="550" y="346" text-anchor="middle">brief, source records, insights, candidate narratives, model nodes, rendering decision, decision log, current step, loop count</text>
+      </svg>
+    </div>
+    <figcaption>The orchestrator calls each step skill in turn, and step skills never call each other. Every skill, including the orchestrator, reads and writes one process record, which is how a step knows what the earlier steps decided. Every skill name starts with <code>infographic-</code>, except the existing catalogue.</figcaption>
+  </figure>
+
+  <h2>Order and loops</h2>
+  <figure>
+    <div class="scroll">
+      <svg viewBox="0 0 1100 372" role="img" aria-label="The seven steps run in order from left to right. Six loops send work back to an earlier step: from step 4 to steps 3, 2 and 1, from step 6 to step 5, and from step 7 to steps 5 and 3.">
+        <defs>
+          <marker id="bh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk" d="M0,1 L9,5 L0,9 z"/></marker>
+          <marker id="bhl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-loop" d="M0,1 L9,5 L0,9 z"/></marker>
+        </defs>
+
+        <rect class="n-step" x="26" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="82" y="181" text-anchor="middle">Step 1</text>
+        <text class="t-name" x="82" y="203" text-anchor="middle">Research</text>
+
+        <rect class="n-exist" x="182" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="238" y="181" text-anchor="middle">Step 2</text>
+        <text class="t-name" x="238" y="203" text-anchor="middle">Analysis</text>
+
+        <rect class="n-step" x="338" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="394" y="181" text-anchor="middle">Step 3</text>
+        <text class="t-name" x="394" y="203" text-anchor="middle">Narrative</text>
+
+        <rect class="n-step" x="494" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="550" y="181" text-anchor="middle">Step 4</text>
+        <text class="t-name" x="550" y="203" text-anchor="middle">Concept model</text>
+
+        <rect class="n-step" x="650" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="706" y="181" text-anchor="middle">Step 5</text>
+        <text class="t-name" x="706" y="203" text-anchor="middle">Rendering</text>
+
+        <rect class="n-step" x="806" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="862" y="181" text-anchor="middle">Step 6</text>
+        <text class="t-name" x="862" y="203" text-anchor="middle">Build</text>
+
+        <rect class="n-step" x="962" y="150" width="112" height="84" rx="8"/>
+        <text class="t-step" x="1018" y="181" text-anchor="middle">Step 7</text>
+        <text class="t-name" x="1018" y="203" text-anchor="middle">Validation</text>
+
+        <line class="ln" x1="142" y1="192" x2="178" y2="192" marker-end="url(#bh)"/>
+        <line class="ln" x1="298" y1="192" x2="334" y2="192" marker-end="url(#bh)"/>
+        <line class="ln" x1="454" y1="192" x2="490" y2="192" marker-end="url(#bh)"/>
+        <line class="ln" x1="610" y1="192" x2="646" y2="192" marker-end="url(#bh)"/>
+        <line class="ln" x1="766" y1="192" x2="802" y2="192" marker-end="url(#bh)"/>
+        <line class="ln" x1="922" y1="192" x2="958" y2="192" marker-end="url(#bh)"/>
+
+        <path class="loop" d="M540,150 C540,91.3 394,91.3 394,150" marker-end="url(#bhl)"/>
+        <text class="t-loop" x="467" y="99" text-anchor="middle">1 narrative unsupported</text>
+        <path class="loop" d="M565,150 C565,48.7 238,48.7 238,150" marker-end="url(#bhl)"/>
+        <text class="t-loop" x="401" y="66" text-anchor="middle">2 needs more analysis</text>
+        <path class="loop" d="M590,150 C590,6 82,6 82,150" marker-end="url(#bhl)"/>
+        <text class="t-loop" x="336" y="34" text-anchor="middle">3 needs more data</text>
+
+        <path class="loop" d="M862,234 C862,292.7 722,292.7 722,234" marker-end="url(#bhl)"/>
+        <text class="t-loop" x="792" y="268" text-anchor="middle">4 approach fails</text>
+        <path class="loop" d="M1010,234 C1010,335.3 690,335.3 690,234" marker-end="url(#bhl)"/>
+        <text class="t-loop" x="850" y="300" text-anchor="middle">5 feedback changes the design</text>
+        <path class="loop" d="M1040,234 C1040,378 394,378 394,234" marker-end="url(#bhl)"/>
+        <text class="t-loop" x="717" y="333" text-anchor="middle">6 feedback changes the narrative</text>
+      </svg>
+    </div>
+    <figcaption>The steps run left to right. Each numbered loop returns work to an earlier step when a check fails. The orchestrator chooses which loop to run, and after two passes of the same loop it stops and asks you.</figcaption>
+  </figure>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Loop</th><th>From</th><th>Back to</th><th>When it runs</th><th>Basis</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 Narrative unsupported</td><td>Step 4</td><td>Step 3</td><td>The model cannot support a claim in the chosen narrative.</td><td>From the earlier chat: narrative and model may need a loop between them.</td></tr>
+        <tr><td>2 Needs more analysis</td><td>Step 4</td><td>Step 2</td><td>A claim has no insight behind it.</td><td>From the earlier chat: step 4 can send work back to steps 1 and 2.</td></tr>
+        <tr><td>3 Needs more data</td><td>Step 4</td><td>Step 1</td><td>A claim has no source.</td><td>From the earlier chat, as for loop 2.</td></tr>
+        <tr><td>4 Approach fails</td><td>Step 6</td><td>Step 5</td><td>The build shows the chosen rendering approach does not work.</td><td>Added in this map.</td></tr>
+        <tr><td>5 Feedback changes the design</td><td>Step 7</td><td>Step 5</td><td>Readers or the workshop reject the rendering approach.</td><td>From the earlier chat: step 7 can send work back to step 3 or 5.</td></tr>
+        <tr><td>6 Feedback changes the narrative</td><td>Step 7</td><td>Step 3</td><td>Feedback changes the narrative or the message.</td><td>From the earlier chat, as for loop 5.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>What each skill does</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Skill</th><th>Does</th><th>Reads</th><th>Writes</th><th>Checks</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pill orch">Orchestrator</span><br><span class="sk">infographic-process</span></td>
+          <td>Takes the outcome, message, audience and output type at intake. Calls the steps in order, applies the checks, chooses the loop to run, and stops to ask you after two passes of the same loop.</td>
+          <td>The whole record</td>
+          <td>Brief, current step, loop count, decision log</td>
+          <td class="chk">Applies every check below.</td>
+        </tr>
+        <tr>
+          <td><span class="pill">Step 1</span><br><span class="sk">infographic-research</span></td>
+          <td>Domain research and data collection.</td>
+          <td>Brief</td>
+          <td>Source records: what the source is, its date and how reliable it is</td>
+          <td class="chk">None defined yet.</td>
+        </tr>
+        <tr>
+          <td><span class="pill exist">Step 2, existing</span><br><span class="sk">analytical techniques catalogue</span></td>
+          <td>Applies analytical techniques to the sources and extracts the key insights. The methods stay in the catalogue and are not repeated in this process.</td>
+          <td>Source records</td>
+          <td>Insights, each linked to its sources</td>
+          <td class="chk">None defined yet.</td>
+        </tr>
+        <tr>
+          <td><span class="pill">Step 3</span><br><span class="sk">infographic-narrative</span></td>
+          <td>Explores candidate narratives against the outcome and chooses one with you.</td>
+          <td>Brief, insights</td>
+          <td>Candidate narratives, chosen narrative</td>
+          <td class="chk"><div><b>Assistant:</b> horizontal logic (the headings, read in order, tell the narrative).</div><div><b>You:</b> confirm the chosen narrative.</div></td>
+        </tr>
+        <tr>
+          <td><span class="pill">Step 4</span><br><span class="sk">infographic-concept-model</span></td>
+          <td>Builds the model that supports the chosen narrative. Each node links to a source record, logic, a finding or a hypothesis, and is marked as evidence, assumption or judgement.</td>
+          <td>Chosen narrative, insights, source records</td>
+          <td>Model nodes</td>
+          <td class="chk"><div><b>Assistant:</b> every node has a complete source record.</div></td>
+        </tr>
+        <tr>
+          <td><span class="pill">Step 5</span><br><span class="sk">infographic-rendering</span></td>
+          <td>Selects the rendering approach for the output type and tests the options.</td>
+          <td>Chosen narrative, model, output type</td>
+          <td>Rendering decision</td>
+          <td class="chk"><div><b>You:</b> pick the option.</div><div>No assistant check defined yet.</div></td>
+        </tr>
+        <tr>
+          <td><span class="pill">Step 6</span><br><span class="sk">infographic-build</span></td>
+          <td>Builds the visualisation.</td>
+          <td>Model, rendering decision</td>
+          <td>The visualisation</td>
+          <td class="chk"><div><b>Assistant:</b> reverse storyboarding (work out the narrative from the finished visual and compare it with the message).</div></td>
+        </tr>
+        <tr>
+          <td><span class="pill">Step 7</span><br><span class="sk">infographic-validation</span></td>
+          <td>Communication, sharing and workshop validation.</td>
+          <td>Everything in the record</td>
+          <td>Feedback log, and the loop to run if feedback requires one</td>
+          <td class="chk"><div><b>Assistant:</b> source and traceability checks on the finished visual.</div><div><b>You:</b> a reader with no context, and the workshop.</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Working in Claude and GitHub Copilot</h2>
+  <p>The skills are the same files in both tools. Each is a SKILL.md with only a name and a description in its header, and no bundled files, so the same text works wherever it is installed.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th>Claude</th><th>GitHub Copilot</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Where the file goes</td><td>The skill review card in claude.ai, one SKILL.md per skill. Claude Code reads <code>.claude/skills</code>.</td><td><code>.github/skills</code>, <code>.claude/skills</code> or <code>.agents/skills</code> in a repository, or <code>~/.copilot/skills</code> for personal use.</td></tr>
+        <tr><td>How a skill starts</td><td>Claude matches the task to the skill description.</td><td>Copilot matches the task to the skill description in the same way.</td></tr>
+        <tr><td>Optional extras, not needed for the core</td><td>Claude Code can stop step skills starting by themselves, so only the orchestrator starts them.</td><td>A custom agent with handoffs could run the sequence. I have not confirmed this in GitHub's own documentation.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Because step skills cannot be switched off in the portable format, each step description begins by saying it is one step of the infographic process and is started through <span class="sk">infographic-process</span>.</p>
+
+  <h2>Open items</h2>
+  <ul class="open">
+    <li>The exact name of the analytical techniques catalogue, so the orchestrator can call it. It also needs a copy in the Copilot repository.</li>
+    <li>Whether steps 3 and 4 stay as separate skills. They are the most likely to hand work back and forth, so merge them if testing shows that.</li>
+    <li>The three boundary questions on the output typology (concept diagrams, data art and live presentations), which affect step 5.</li>
+    <li>Whether skills are enabled in your Copilot plan and in VS Code.</li>
+  </ul>
+</main>
+</body>
+</html>
