@@ -23,7 +23,7 @@ Do not start another step. When you finish, report back as described at the end.
 
 ## Assistant checks
 
-**Source check.** For every source line shown on the work, confirm that the link works or the reference is complete, that the source record exists, and that the claim shown matches what the source says. Confirm that no source whose kind is "lead only" is the basis of a stated fact.
+**Source check.** Repeat the source-to-claim match from step 6 on the final version. For every source line shown on the work, confirm that the link works or the reference is complete, that the source record exists, and that the claim shown matches what the source says. Confirm that no source whose kind is "lead only" is the basis of a stated fact.
 
 **Traceability check.** List every claim the work shows. For each, confirm that it links to a node, that the node's type is shown honestly (an assumption or judgement is not presented as evidence), and that the node's support still exists in the record. List each claim that fails.
 

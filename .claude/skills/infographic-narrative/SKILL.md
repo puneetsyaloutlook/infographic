@@ -47,7 +47,7 @@ Do not start another step. When you finish, report back as described at the end.
 
 An action title says what the reader should take from the part, not what the part contains. "Costs rose faster than wages" is an action title. "Costs and wages" is not.
 
-Read only the action titles of the recommended candidate, in order, as if they were the whole work. Check that they tell the narrative from the opening to the call to action, with no missing step and no title that repeats another. If they do not, rewrite the titles or the order and run the check again. Report the result in the step report.
+Read only the action titles of the recommended candidate, in order, as if they were the whole work. Check that they tell the narrative from the opening to the call to action, with no missing step and no title that repeats another. Also check that each title is no stronger than the insights behind it. For example, "no effect" is too strong where the insight says "no clear effect yet". If a title fails either check, rewrite the titles or the order and run the check again. Report the result in the step report.
 
 ## Step report
 

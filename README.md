@@ -40,10 +40,13 @@ Every skill's header contains only a `name` and a `description`, so it works in 
 
 ## Status
 
-The design has not been tested on a real project. The order of steps, the six loops, the six output types and the placement of each check are a design for this process, and `DESIGN-NOTES.md` says which parts have a source. Record anything that does not work in the decision log of the process record, then change the skill.
+The design has had one test run, on one brief, through steps 1 to 7 (see `docs/test-run-1.md`). The order of steps, the six loops, the six output types and the placement of each check are a design for this process, and `DESIGN-NOTES.md` says which parts have a source. Record anything that does not work in the decision log of the process record, then change the skill.
 
 Open items:
 
+- Step 2 is being built elsewhere and was supplied by the person in the test run. Test it once it is ready.
+- The six loops, the loop limit and escalation have not been run. Test them on a second brief, with a loop forced to occur.
+- The people checks (reader with no context, workshop) and the Copilot setup have not been run.
 - The exact name of your analytical techniques catalogue skill. It also needs a copy in any repository where Copilot will run the process.
 - Whether steps 3 and 4 stay as separate skills. They are the most likely to pass work back and forth, so merge them if testing shows that.
 - Three boundary questions on the output types: concept diagrams that are not derived from data, data art, and live presentations or slide decks.

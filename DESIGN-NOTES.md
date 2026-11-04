@@ -36,6 +36,8 @@ No study compares a narrative-first workflow with a model-first workflow, and no
 | The six output types, the five assignment questions and the change in each step by type | Built on the five facets. | Inference |
 | One orchestrator running steps in order, with checks between them and a loop back when a check fails | Anthropic's guidance on agent workflows describes prompt chaining with checks between steps, and an evaluator loop that repeats until a check passes. | Documented method |
 | One shared record passed between steps | Common practice in chained skills, reported by practitioners. | Practitioner method |
+| Brief intake items (evidence already in the brief, constraints, devices and measures), step 1 corrections, title changes, brief conflict check | Found by one test run on one brief, where each gap caused a late fix. No outside source. | Inference |
+| Source-to-claim match in step 6, and a blind reverse storyboarding check by a separate reviewer | Found by the same test run, where the step 7 source check found seven errors that earlier steps missed. Independent review of a check is common practice, with no source cited here. | Inference |
 
 ## Sources
 

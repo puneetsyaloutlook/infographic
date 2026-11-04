@@ -16,10 +16,11 @@ Do not start another step. When you finish, report back as described at the end.
 ## What to do
 
 1. **Write the research questions.** Turn the Brief into three to seven questions. Include one focus question: the question the finished work must answer for this audience. List the questions at the top of the Source records heading.
-2. **Find sources.** Prefer primary sources (the original data, the original study, the official publication) over summaries of them. Look for evidence that disagrees with the draft message as well as evidence that supports it.
-3. **Collect data.** Keep each original data file unchanged in a `data` folder in the working folder. Name the file so it shows which source record it belongs to, for example `S3-original.csv`. Do any cleaning in a separate copy and note what was changed.
-4. **Write a source record for every source used.** Use the format below.
-5. **Name the gaps.** For each research question, say whether it is answered, partly answered or not answered, and what is missing.
+2. **Verify what the Brief already contains.** If the Brief lists figures or sources, treat each as a lead. Find the original, confirm the figure, unit, base and date, and write a "Corrects the brief" line in the source record where the original says something different, including a different comparison, version, period or wording.
+3. **Find sources.** Prefer primary sources (the original data, the original study, the official publication) over summaries of them. Look for evidence that disagrees with the draft message as well as evidence that supports it.
+4. **Collect data.** Keep each original data file unchanged in a `data` folder in the working folder. Name the file so it shows which source record it belongs to, for example `S3-original.csv`. Do any cleaning in a separate copy and note what was changed.
+5. **Write a source record for every source used.** Use the format below.
+6. **Name the gaps.** For each research question, say whether it is answered, partly answered or not answered, and what is missing.
 
 ## Source handling rules
 
@@ -43,6 +44,8 @@ Write each record under the Source records heading.
 - Kind: primary, secondary, practitioner observation, or lead only
 - Reliability: one line on why it can or cannot be relied on
 - Gives: the data or claims taken from it
+- Data: data file saved, published figures only, or series available. For each figure, say whether it is a single value, a series or an interval
+- Corrects the brief: the brief's wording that this source contradicts, or none
 - Files: names of any data files saved from it
 ```
 
@@ -50,10 +53,10 @@ Write each record under the Source records heading.
 
 Add one line to the decision log and tell the person in a few sentences.
 
-- **Complete:** "Step 1 complete: N sources, M of K research questions answered, gaps named." The process continues to step 2.
+- **Complete:** "Step 1 complete: N sources, M of K research questions answered, gaps named, C corrections to the brief." List each correction with the brief's wording and the source's wording. The process continues to step 2.
 - **Blocked:** "Step 1 blocked: <reason>", for example when no reliable source can answer the focus question. The orchestrator decides what happens next, and may ask the person whether to continue.
 
-You do not run a check in this step. If you notice a problem, such as sources that all come from one author, say so in the report.
+Run the brief conflict check: read the constraints in the Brief and confirm that no source record breaks one. Report each break. If you notice another problem, such as sources that all come from one author, say so in the report.
 
 ## What this step reads and writes
 

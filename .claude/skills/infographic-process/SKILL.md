@@ -59,6 +59,10 @@ Fill in the Brief before step 1. Ask the person for anything you cannot find in 
 - **Updates:** whether the data will change after release (yes or no).
 - **Catalogue skill:** the name of the person's analytical techniques catalogue skill, if they have one.
 
+- **Evidence already in the brief:** the figures or sources it lists, if any. Step 1 treats each one as a lead and verifies it against the original.
+- **Constraints:** the exclusions and required labels the brief states, for example a source, name or claim that must not appear. The brief conflict check below uses this list.
+- **Devices and measures:** for any curve, matrix, index or other framing device the brief names, the measure on each axis and where its data come from. If a measure has no data source, tell the person at intake and do not wait for step 4 to find it.
+
 Then run four early checks. They come from one newsroom's practice, so treat them as prompts and not requirements. If any answer is no, tell the person and let them decide whether to continue.
 
 1. Can the question be answered with data or evidence that can be found?
@@ -103,7 +107,11 @@ These types are a design for this process and no source tests them. Three cases 
 
 **Step 2.** Find the installed skill whose description names analytical techniques. Use it with the Brief and the Source records, and ask it to write insights into the Insights heading, each linked to the source record ids it rests on. If no such skill is available, ask the person for its name or content before continuing. Do not invent analysis methods in this skill.
 
+**Step 1 corrections.** If step 1 reports corrections to the brief, show them to the person before step 3 starts, with the brief's wording and the source's wording side by side. The person agrees or overrules each one. Log the decision.
+
 **Blocked steps.** If a step cannot start or finish because an input is missing or cannot support the work, it reports "blocked" with the reason. Run the previous step again and log it as a blocked repeat, not as one of the six loops.
+
+**Title changes.** Step 5 or step 6 may find that an action title is too long, or goes further than its nodes support. Do not reword it inside that step. Show the person the proposed wording. If they agree, run the horizontal logic check on the new set of titles and the completeness check on the nodes behind the changed titles, then continue. Log it as a title change. It is not one of the six loops.
 
 ## Loops
 
@@ -130,15 +138,21 @@ The assistant runs these. The person is involved only where the table says so.
 
 | After step | Check | Who |
 |---|---|---|
-| 3 | Horizontal logic: the action titles alone, read in order, tell the narrative | Assistant |
+| 1 | Brief conflict: no source record breaks a constraint listed in the Brief | Assistant |
+| 2 | Brief conflict: no insight breaks a constraint listed in the Brief | Assistant |
+| 3 | Horizontal logic: the action titles alone, read in order, tell the narrative, and no title is stronger than the insights behind it | Assistant |
 | 3 | The chosen narrative is confirmed | Person |
-| 4 | Source-record completeness: every node has a complete source record or stated logic | Assistant |
+| 4 | Source-record completeness: every node has a complete source record or stated logic, and every claim in the narrative has a node | Assistant |
+| 5 | Brief conflict: the rendering decision respects the constraints, and every node has a data form that can show it | Assistant |
 | 5 | The rendering option is picked | Person |
-| 6 | Reverse storyboarding: the main point of each part, written from the finished work alone, matches the chosen narrative | Assistant |
+| 6 | Source-to-claim match: every figure on the work matches its source in value, unit, base, period and wording | Assistant |
+| 6 | Reverse storyboarding: the main point of each part, written from the finished work alone, matches the chosen narrative | Assistant, blind |
 | 7 | Source and traceability checks on the finished work | Assistant |
 | 7 | A reader with no context, and the workshop | Person |
 
-Steps 1, 2 and 5 have no assistant check defined yet. Do not invent one. If you see a problem, report it in the step report.
+**Brief conflict check.** Read the constraints in the Brief and test each source record, insight or decision against them. A break is reported to the person with the constraint, the item and a proposed fix. It does not start a loop. Do not invent other checks for steps 1, 2 and 5.
+
+**Independence.** A check that grades the work should be run by a reviewer that did not make it: a separate agent or a new session, given only the finished work and the criteria. Where the tool offers none, run the check yourself and write "self-checked" beside it in the decision log. The reverse storyboarding check must always be blind, and the Build record says whether it was.
 
 ## When to ask the person
 
@@ -153,8 +167,8 @@ Keep each question short and give a recommendation with it.
 
 ## Finishing
 
-When step 7 reports no further loop, write a short summary for the person: what was built, which loops ran, what the checks found, and what remains unverified. Then tell the person where the process record is saved.
+When step 7 reports no further loop, write a short summary for the person: what was built, which loops ran, what the checks found, which checks were self-checked, and what remains unverified. Then tell the person where the process record is saved.
 
 ## Status of this design
 
-The order of steps, the six loops, the output types and the placement of each check are a design for this process. Parts rest on named sources, listed in the design notes of the infographic repository (github.com/puneetsyaloutlook/infographic). The combination has not been tested on a real project, so record any step or rule that did not work in the decision log.
+The order of steps, the six loops, the output types and the placement of each check are a design for this process. Parts rest on named sources, listed in the design notes of the infographic repository (github.com/puneetsyaloutlook/infographic). The combination has had one test run, on one brief, through steps 1 to 7 (people checks not run). The brief intake items, step 1 corrections, title changes, brief conflict check, source-to-claim match and independence rule were added after that run, and are inference from it. Step 2 was supplied by the person and the six loops were not run. Record any step or rule that did not work in the decision log.
