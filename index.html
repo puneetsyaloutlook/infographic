@@ -146,6 +146,8 @@ td:first-child { font-weight: 500; }
 ul.open { margin: 0; padding-left: 1.2em; max-width: 70ch; }
 ul.open li { margin-bottom: var(--space-sm); }
 
+main > h3 { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; margin: var(--space-xl) 0 var(--space-sm); }
+.table-wrap + p { margin-top: var(--space-md); }
 a { color: var(--action); }
 a.svg-link { cursor: pointer; text-decoration: none; }
 a.svg-link:hover rect, a.svg-link:focus-visible rect { stroke-width: 3; }
@@ -175,17 +177,6 @@ footer { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top:
     <li><span class="swatch exist"></span>Existing skill, outside this repository</li>
     <li><span class="swatch loopkey"></span>Loop back</li>
   </ul>
-
-  <div class="status">
-    <div>
-      <h3>Tested</h3>
-      <p>One run on one brief, through intake and steps 1 to 7 in Claude. Step 2 was supplied as a document. Six gaps found in that run are fixed in these skills. See <a href="docs/test-run-1/">test run 1</a>.</p>
-    </div>
-    <div>
-      <h3>Not yet tested</h3>
-      <p>Step 2 as a skill, the six loops with the loop limit and escalation, the reader and workshop checks, and use in GitHub Copilot.</p>
-    </div>
-  </div>
 
   <h2>How the skills connect</h2>
   <figure>
@@ -450,6 +441,38 @@ footer { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top:
   </div>
   <p class="note">Because step skills cannot be switched off in the portable format, each step description begins by saying it is one step of the infographic process and is started through <span class="sk">infographic-process</span>.</p>
 
+  <h2>Testing</h2>
+  <p>A running record of each test of the skills and the refinements it led to. Each new test is added below the last.</p>
+
+  <h3>Test run 1, 4 November 2026</h3>
+  <p>One brief on AI substitution and use, with US and Australian evidence. The output was a scrolling annotated page (output type 2), built in Claude. Intake and steps 1, 3, 4, 5 and 6 ran, and so did the assistant checks in step 7. Step 2 was supplied as a document, because the catalogue skill was not available. One blocked step was repeated, and step 4 was resolved by weakening claims with the person's agreement. Full notes are in <a href="docs/test-run-1/">test run 1</a>.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Gap found</th><th>Refinement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A brief that arrives with evidence already gathered had no rule, and corrections had no route to the person.</td><td>New intake item for evidence already in the brief. Step 1 verifies it and reports corrections, and the orchestrator shows them to the person before step 3.</td></tr>
+        <tr><td>The axes of a framing device (a curve) were not defined until step 4.</td><td>New intake item for devices and measures.</td></tr>
+        <tr><td>Nothing checked insights or sources against the brief's constraints.</td><td>New intake item for constraints, and a brief conflict check after steps 1, 2 and 5.</td></tr>
+        <tr><td>Step 1 did not record whether data could be plotted.</td><td>New source record field for the data, and a note on the form of the data for each node in step 5.</td></tr>
+        <tr><td>A long title could not be shortened for a card without changing the narrative.</td><td>A route for title changes, fixed in place and not counted as a loop. Step 5 no longer rewords titles.</td></tr>
+        <tr><td>The assistant that made the work also graded it, and the source match came only at step 7.</td><td>An independence rule (a separate reviewer, or the check is marked self-checked), blind reverse storyboarding, and a source-to-claim match in step 6.</td></tr>
+        <tr><td>A title could say more than the insights behind it.</td><td>Step 3 now checks that each title is no stronger than its insights.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The refinements are in <a href="https://github.com/puneetsyaloutlook/infographic/commit/47ead15">commit 47ead15</a>. The horizontal logic check, the completeness check (including its reverse direction) and the reverse storyboarding check each caught a real problem, and the process record kept its state across a context reset. The step 7 checks also found seven errors in the draft page, all fixed before release. They were figures stated more strongly than their sources, and a wrong period for one dataset.</p>
+
+  <h3>Not yet tested</h3>
+  <ul class="open">
+    <li>Step 2 as a skill. It is built elsewhere.</li>
+    <li>The six loops, the loop limit and escalation. Test run 1 did not trigger a loop, and a separate run is planned.</li>
+    <li>The reader with no context and the workshop.</li>
+    <li>Use in GitHub Copilot.</li>
+  </ul>
+
   <h2>Documents</h2>
   <ul class="docs">
     <li><a href="readme/">README</a><p>What the repository contains, how to install the skills in Claude and in GitHub Copilot, and the current status.</p></li>
@@ -459,9 +482,7 @@ footer { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top:
 
   <h2>Open items</h2>
   <ul class="open">
-    <li>Step 2 as a skill. It is built elsewhere and has not been run in this process yet.</li>
-    <li>The six loops, the loop limit and escalation. Test run 1 did not trigger a loop.</li>
-    <li>The people checks (a reader with no context, and the workshop), and use in GitHub Copilot. Whether skills are enabled in your Copilot plan and in VS Code is also unknown.</li>
+    <li>Whether skills are enabled in your Copilot plan and in VS Code.</li>
     <li>The exact name of the analytical techniques catalogue, so the orchestrator can call it. It also needs a copy in the Copilot repository.</li>
     <li>Whether steps 3 and 4 stay as separate skills. They are the most likely to hand work back and forth, so merge them if testing shows that.</li>
     <li>The three boundary questions on the output typology (concept diagrams, data art and live presentations), which affect step 5.</li>
