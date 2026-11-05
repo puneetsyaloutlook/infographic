@@ -1,0 +1,13 @@
+{
+  "name": "infographic-skills",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Skill map and rendered documents for the infographic process skills",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "marked": "^14.1.0"
+  }
+}

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infographic skill map</title>
+<meta name="description" content="How the infographic process skills connect: one orchestrator, six step skills, the checks and the loops. Each skill links to its SKILL.md.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
@@ -145,6 +146,17 @@ td:first-child { font-weight: 500; }
 ul.open { margin: 0; padding-left: 1.2em; max-width: 70ch; }
 ul.open li { margin-bottom: var(--space-sm); }
 
+a { color: var(--action); }
+a.svg-link { cursor: pointer; text-decoration: none; }
+a.svg-link:hover rect, a.svg-link:focus-visible rect { stroke-width: 3; }
+a.svg-link:focus-visible { outline: none; }
+.sk a { color: inherit; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.sk a:hover { text-decoration-color: currentColor; }
+.docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-md); margin: 0; padding: 0; list-style: none; }
+.docs li { background: var(--surface-quiet); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: var(--space-md) var(--space-lg); }
+.docs a { font-weight: 600; }
+.docs p { margin: 4px 0 0; font-size: 0.92rem; color: var(--text-secondary); max-width: none; }
+footer { margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid var(--border-default); font-size: 0.9rem; color: var(--text-secondary); }
 @media (max-width: 640px) {
   h1 { font-size: 1.7rem; }
   main { padding-top: var(--space-xl); }
@@ -155,23 +167,23 @@ ul.open li { margin-bottom: var(--space-sm); }
 <body>
 <main>
   <h1>Infographic skill map</h1>
-  <p class="lead">The process becomes eight skills: one orchestrator and seven step skills, one of which is your existing analytical techniques catalogue. Only the orchestrator knows the order. Step skills never call each other. When a check fails, a step reports where to go back to, and the orchestrator runs that loop.</p>
+  <p class="lead">The process is one orchestrator and seven steps. Six steps are skills in this repository, and step 2 uses the analytical techniques catalogue, which is built elsewhere. Only the orchestrator knows the order. Step skills never call each other. When a check fails, a step reports where to go back to, and the orchestrator runs that loop. Skill names and the figures below link to the SKILL.md text.</p>
 
   <ul class="legend" aria-label="Key">
-    <li><span class="swatch orch"></span>Orchestrator (new)</li>
-    <li><span class="swatch"></span>Step skill (new)</li>
-    <li><span class="swatch exist"></span>Existing skill</li>
+    <li><span class="swatch orch"></span>Orchestrator</li>
+    <li><span class="swatch"></span>Step skill</li>
+    <li><span class="swatch exist"></span>Existing skill, outside this repository</li>
     <li><span class="swatch loopkey"></span>Loop back</li>
   </ul>
 
   <div class="status">
     <div>
-      <h3>Agreed</h3>
-      <p>The seven steps, the shared vocabulary (outcome, message, story, narrative), step 2 using your analytical techniques catalogue, and use in both Claude and GitHub Copilot.</p>
+      <h3>Tested</h3>
+      <p>One run on one brief, through intake and steps 1 to 7 in Claude. Step 2 was supplied as a document. Six gaps found in that run are fixed in these skills. See <a href="docs/test-run-1/">test run 1</a>.</p>
     </div>
     <div>
-      <h3>Proposed here, for your review</h3>
-      <p>Intake in the orchestrator, the six loops and the loop limit, which step runs each check, and the skill names.</p>
+      <h3>Not yet tested</h3>
+      <p>Step 2 as a skill, the six loops with the loop limit and escalation, the reader and workshop checks, and use in GitHub Copilot.</p>
     </div>
   </div>
 
@@ -184,9 +196,11 @@ ul.open li { margin-bottom: var(--space-sm); }
           <marker id="ahl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-loop" d="M0,1 L9,5 L0,9 z"/></marker>
         </defs>
 
-        <rect class="n-orch" x="400" y="18" width="300" height="68" rx="8"/>
-        <text class="t-orch" x="550" y="46" text-anchor="middle" style="font-family: var(--font-mono); font-size: 14px; font-weight: 600;">infographic-process</text>
-        <text class="t-orch" x="550" y="68" text-anchor="middle" style="font-size: 12px;">Orchestrator: order, checks, loops</text>
+        <a class="svg-link" href="skills/infographic-process/" aria-label="Orchestrator: open infographic-process">
+          <rect class="n-orch" x="400" y="18" width="300" height="68" rx="8"/>
+          <text class="t-orch" x="550" y="46" text-anchor="middle" style="font-family: var(--font-mono); font-size: 14px; font-weight: 600;">infographic-process</text>
+          <text class="t-orch" x="550" y="68" text-anchor="middle" style="font-size: 12px;">Orchestrator: order, checks, loops</text>
+        </a>
 
         <line class="ln" x1="550" y1="86" x2="550" y2="118"/>
         <line class="ln" x1="82" y1="118" x2="1018" y2="118"/>
@@ -199,40 +213,52 @@ ul.open li { margin-bottom: var(--space-sm); }
         <line class="ln" x1="862" y1="118" x2="862" y2="148" marker-end="url(#ah)"/>
         <line class="ln" x1="1018" y1="118" x2="1018" y2="148" marker-end="url(#ah)"/>
 
-        <rect class="n-step" x="26" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="82" y="172" text-anchor="middle">Step 1</text>
-        <text class="t-name" x="82" y="194" text-anchor="middle">Research</text>
-        <text class="t-skill" x="82" y="216" text-anchor="middle">research</text>
+        <a class="svg-link" href="skills/infographic-research/" aria-label="Research: open infographic-research">
+          <rect class="n-step" x="26" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="82" y="172" text-anchor="middle">Step 1</text>
+          <text class="t-name" x="82" y="194" text-anchor="middle">Research</text>
+          <text class="t-skill" x="82" y="216" text-anchor="middle">research</text>
+        </a>
 
         <rect class="n-exist" x="182" y="150" width="112" height="84" rx="8"/>
         <text class="t-step" x="238" y="172" text-anchor="middle">Step 2</text>
         <text class="t-name" x="238" y="194" text-anchor="middle">Analysis</text>
         <text class="t-exist" x="238" y="216" text-anchor="middle">existing catalogue</text>
 
-        <rect class="n-step" x="338" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="394" y="172" text-anchor="middle">Step 3</text>
-        <text class="t-name" x="394" y="194" text-anchor="middle">Narrative</text>
-        <text class="t-skill" x="394" y="216" text-anchor="middle">narrative</text>
+        <a class="svg-link" href="skills/infographic-narrative/" aria-label="Narrative: open infographic-narrative">
+          <rect class="n-step" x="338" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="394" y="172" text-anchor="middle">Step 3</text>
+          <text class="t-name" x="394" y="194" text-anchor="middle">Narrative</text>
+          <text class="t-skill" x="394" y="216" text-anchor="middle">narrative</text>
+        </a>
 
-        <rect class="n-step" x="494" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="550" y="172" text-anchor="middle">Step 4</text>
-        <text class="t-name" x="550" y="194" text-anchor="middle">Concept model</text>
-        <text class="t-skill" x="550" y="216" text-anchor="middle">concept-model</text>
+        <a class="svg-link" href="skills/infographic-concept-model/" aria-label="Concept model: open infographic-concept-model">
+          <rect class="n-step" x="494" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="550" y="172" text-anchor="middle">Step 4</text>
+          <text class="t-name" x="550" y="194" text-anchor="middle">Concept model</text>
+          <text class="t-skill" x="550" y="216" text-anchor="middle">concept-model</text>
+        </a>
 
-        <rect class="n-step" x="650" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="706" y="172" text-anchor="middle">Step 5</text>
-        <text class="t-name" x="706" y="194" text-anchor="middle">Rendering</text>
-        <text class="t-skill" x="706" y="216" text-anchor="middle">rendering</text>
+        <a class="svg-link" href="skills/infographic-rendering/" aria-label="Rendering: open infographic-rendering">
+          <rect class="n-step" x="650" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="706" y="172" text-anchor="middle">Step 5</text>
+          <text class="t-name" x="706" y="194" text-anchor="middle">Rendering</text>
+          <text class="t-skill" x="706" y="216" text-anchor="middle">rendering</text>
+        </a>
 
-        <rect class="n-step" x="806" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="862" y="172" text-anchor="middle">Step 6</text>
-        <text class="t-name" x="862" y="194" text-anchor="middle">Build</text>
-        <text class="t-skill" x="862" y="216" text-anchor="middle">build</text>
+        <a class="svg-link" href="skills/infographic-build/" aria-label="Build: open infographic-build">
+          <rect class="n-step" x="806" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="862" y="172" text-anchor="middle">Step 6</text>
+          <text class="t-name" x="862" y="194" text-anchor="middle">Build</text>
+          <text class="t-skill" x="862" y="216" text-anchor="middle">build</text>
+        </a>
 
-        <rect class="n-step" x="962" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="1018" y="172" text-anchor="middle">Step 7</text>
-        <text class="t-name" x="1018" y="194" text-anchor="middle">Validation</text>
-        <text class="t-skill" x="1018" y="216" text-anchor="middle">validation</text>
+        <a class="svg-link" href="skills/infographic-validation/" aria-label="Validation: open infographic-validation">
+          <rect class="n-step" x="962" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="1018" y="172" text-anchor="middle">Step 7</text>
+          <text class="t-name" x="1018" y="194" text-anchor="middle">Validation</text>
+          <text class="t-skill" x="1018" y="216" text-anchor="middle">validation</text>
+        </a>
 
         <line class="ln" x1="82" y1="236" x2="82" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
         <line class="ln" x1="238" y1="236" x2="238" y2="298" marker-start="url(#ah)" marker-end="url(#ah)"/>
@@ -260,33 +286,45 @@ ul.open li { margin-bottom: var(--space-sm); }
           <marker id="bhl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-loop" d="M0,1 L9,5 L0,9 z"/></marker>
         </defs>
 
-        <rect class="n-step" x="26" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="82" y="181" text-anchor="middle">Step 1</text>
-        <text class="t-name" x="82" y="203" text-anchor="middle">Research</text>
+        <a class="svg-link" href="skills/infographic-research/" aria-label="Research: open infographic-research">
+          <rect class="n-step" x="26" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="82" y="181" text-anchor="middle">Step 1</text>
+          <text class="t-name" x="82" y="203" text-anchor="middle">Research</text>
+        </a>
 
         <rect class="n-exist" x="182" y="150" width="112" height="84" rx="8"/>
         <text class="t-step" x="238" y="181" text-anchor="middle">Step 2</text>
         <text class="t-name" x="238" y="203" text-anchor="middle">Analysis</text>
 
-        <rect class="n-step" x="338" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="394" y="181" text-anchor="middle">Step 3</text>
-        <text class="t-name" x="394" y="203" text-anchor="middle">Narrative</text>
+        <a class="svg-link" href="skills/infographic-narrative/" aria-label="Narrative: open infographic-narrative">
+          <rect class="n-step" x="338" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="394" y="181" text-anchor="middle">Step 3</text>
+          <text class="t-name" x="394" y="203" text-anchor="middle">Narrative</text>
+        </a>
 
-        <rect class="n-step" x="494" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="550" y="181" text-anchor="middle">Step 4</text>
-        <text class="t-name" x="550" y="203" text-anchor="middle">Concept model</text>
+        <a class="svg-link" href="skills/infographic-concept-model/" aria-label="Concept model: open infographic-concept-model">
+          <rect class="n-step" x="494" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="550" y="181" text-anchor="middle">Step 4</text>
+          <text class="t-name" x="550" y="203" text-anchor="middle">Concept model</text>
+        </a>
 
-        <rect class="n-step" x="650" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="706" y="181" text-anchor="middle">Step 5</text>
-        <text class="t-name" x="706" y="203" text-anchor="middle">Rendering</text>
+        <a class="svg-link" href="skills/infographic-rendering/" aria-label="Rendering: open infographic-rendering">
+          <rect class="n-step" x="650" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="706" y="181" text-anchor="middle">Step 5</text>
+          <text class="t-name" x="706" y="203" text-anchor="middle">Rendering</text>
+        </a>
 
-        <rect class="n-step" x="806" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="862" y="181" text-anchor="middle">Step 6</text>
-        <text class="t-name" x="862" y="203" text-anchor="middle">Build</text>
+        <a class="svg-link" href="skills/infographic-build/" aria-label="Build: open infographic-build">
+          <rect class="n-step" x="806" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="862" y="181" text-anchor="middle">Step 6</text>
+          <text class="t-name" x="862" y="203" text-anchor="middle">Build</text>
+        </a>
 
-        <rect class="n-step" x="962" y="150" width="112" height="84" rx="8"/>
-        <text class="t-step" x="1018" y="181" text-anchor="middle">Step 7</text>
-        <text class="t-name" x="1018" y="203" text-anchor="middle">Validation</text>
+        <a class="svg-link" href="skills/infographic-validation/" aria-label="Validation: open infographic-validation">
+          <rect class="n-step" x="962" y="150" width="112" height="84" rx="8"/>
+          <text class="t-step" x="1018" y="181" text-anchor="middle">Step 7</text>
+          <text class="t-name" x="1018" y="203" text-anchor="middle">Validation</text>
+        </a>
 
         <line class="ln" x1="142" y1="192" x2="178" y2="192" marker-end="url(#bh)"/>
         <line class="ln" x1="298" y1="192" x2="334" y2="192" marker-end="url(#bh)"/>
@@ -319,12 +357,12 @@ ul.open li { margin-bottom: var(--space-sm); }
         <tr><th>Loop</th><th>From</th><th>Back to</th><th>When it runs</th><th>Basis</th></tr>
       </thead>
       <tbody>
-        <tr><td>1 Narrative unsupported</td><td>Step 4</td><td>Step 3</td><td>The model cannot support a claim in the chosen narrative.</td><td>From the earlier chat: narrative and model may need a loop between them.</td></tr>
-        <tr><td>2 Needs more analysis</td><td>Step 4</td><td>Step 2</td><td>A claim has no insight behind it.</td><td>From the earlier chat: step 4 can send work back to steps 1 and 2.</td></tr>
-        <tr><td>3 Needs more data</td><td>Step 4</td><td>Step 1</td><td>A claim has no source.</td><td>From the earlier chat, as for loop 2.</td></tr>
-        <tr><td>4 Approach fails</td><td>Step 6</td><td>Step 5</td><td>The build shows the chosen rendering approach does not work.</td><td>Added in this map.</td></tr>
-        <tr><td>5 Feedback changes the design</td><td>Step 7</td><td>Step 5</td><td>Readers or the workshop reject the rendering approach.</td><td>From the earlier chat: step 7 can send work back to step 3 or 5.</td></tr>
-        <tr><td>6 Feedback changes the narrative</td><td>Step 7</td><td>Step 3</td><td>Feedback changes the narrative or the message.</td><td>From the earlier chat, as for loop 5.</td></tr>
+        <tr><td>1 Narrative unsupported</td><td>Step 4</td><td>Step 3</td><td>The model cannot support a claim in the chosen narrative.</td><td><a href="design-notes/">Design notes</a></td></tr>
+        <tr><td>2 Needs more analysis</td><td>Step 4</td><td>Step 2</td><td>A claim has no insight behind it.</td><td><a href="design-notes/">Design notes</a></td></tr>
+        <tr><td>3 Needs more data</td><td>Step 4</td><td>Step 1</td><td>A claim has no source.</td><td><a href="design-notes/">Design notes</a></td></tr>
+        <tr><td>4 Approach fails</td><td>Step 6</td><td>Step 5</td><td>The build shows the chosen rendering approach does not work.</td><td><a href="design-notes/">Design notes</a></td></tr>
+        <tr><td>5 Feedback changes the design</td><td>Step 7</td><td>Step 5</td><td>Readers or the workshop reject the rendering approach.</td><td><a href="design-notes/">Design notes</a></td></tr>
+        <tr><td>6 Feedback changes the narrative</td><td>Step 7</td><td>Step 3</td><td>Feedback changes the narrative or the message.</td><td><a href="design-notes/">Design notes</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -337,60 +375,60 @@ ul.open li { margin-bottom: var(--space-sm); }
       </thead>
       <tbody>
         <tr>
-          <td><span class="pill orch">Orchestrator</span><br><span class="sk">infographic-process</span></td>
-          <td>Takes the outcome, message, audience and output type at intake. Calls the steps in order, applies the checks, chooses the loop to run, and stops to ask you after two passes of the same loop.</td>
+          <td><span class="pill orch">Orchestrator</span><br><span class="sk"><a href="skills/infographic-process/">infographic-process</a></span></td>
+          <td>Takes the brief at intake: outcome, message, audience, output type, evidence already in hand, constraints, devices and measures. Calls the steps in order, applies the checks, chooses the loop to run, and stops to ask you after two passes of the same loop. A blocked step is repeated and logged separately from the six loops. If the brief itself is wrong, it stops and asks you.</td>
           <td>The whole record</td>
           <td>Brief, current step, loop count, decision log</td>
-          <td class="chk">Applies every check below.</td>
+          <td class="chk"><div>Applies every check below.</div><div><b>Assistant:</b> brief conflict check after steps 1, 2 and 5.</div><div>Each check is marked as run by a separate reviewer, or as self-checked.</div></td>
         </tr>
         <tr>
-          <td><span class="pill">Step 1</span><br><span class="sk">infographic-research</span></td>
-          <td>Domain research and data collection.</td>
+          <td><span class="pill">Step 1</span><br><span class="sk"><a href="skills/infographic-research/">infographic-research</a></span></td>
+          <td>Domain research and data collection. Corrections to the brief are shown to you before step 3 starts.</td>
           <td>Brief</td>
-          <td>Source records: what the source is, its date and how reliable it is</td>
-          <td class="chk">None defined yet.</td>
+          <td>Source records: what the source is, its date, how reliable it is, the data taken, and whether it corrects the brief</td>
+          <td class="chk"><div>No assistant check of its own. The brief conflict check runs after this step.</div></td>
         </tr>
         <tr>
           <td><span class="pill exist">Step 2, existing</span><br><span class="sk">analytical techniques catalogue</span></td>
           <td>Applies analytical techniques to the sources and extracts the key insights. The methods stay in the catalogue and are not repeated in this process.</td>
           <td>Source records</td>
           <td>Insights, each linked to its sources</td>
-          <td class="chk">None defined yet.</td>
+          <td class="chk"><div>Built elsewhere and not yet tested here. The brief conflict check runs after this step.</div></td>
         </tr>
         <tr>
-          <td><span class="pill">Step 3</span><br><span class="sk">infographic-narrative</span></td>
+          <td><span class="pill">Step 3</span><br><span class="sk"><a href="skills/infographic-narrative/">infographic-narrative</a></span></td>
           <td>Explores candidate narratives against the outcome and chooses one with you.</td>
           <td>Brief, insights</td>
           <td>Candidate narratives, chosen narrative</td>
-          <td class="chk"><div><b>Assistant:</b> horizontal logic (the headings, read in order, tell the narrative).</div><div><b>You:</b> confirm the chosen narrative.</div></td>
+          <td class="chk"><div><b>Assistant:</b> horizontal logic (the titles, read in order, tell the narrative), and no title stronger than the insights behind it.</div><div><b>You:</b> confirm the chosen narrative.</div></td>
         </tr>
         <tr>
-          <td><span class="pill">Step 4</span><br><span class="sk">infographic-concept-model</span></td>
+          <td><span class="pill">Step 4</span><br><span class="sk"><a href="skills/infographic-concept-model/">infographic-concept-model</a></span></td>
           <td>Builds the model that supports the chosen narrative. Each node links to a source record, logic, a finding or a hypothesis, and is marked as evidence, assumption or judgement.</td>
           <td>Chosen narrative, insights, source records</td>
           <td>Model nodes</td>
-          <td class="chk"><div><b>Assistant:</b> every node has a complete source record.</div></td>
+          <td class="chk"><div><b>Assistant:</b> every node has a complete source record, and every claim in the narrative has a node.</div><div><b>You:</b> agree any change that weakens or removes a claim.</div></td>
         </tr>
         <tr>
-          <td><span class="pill">Step 5</span><br><span class="sk">infographic-rendering</span></td>
+          <td><span class="pill">Step 5</span><br><span class="sk"><a href="skills/infographic-rendering/">infographic-rendering</a></span></td>
           <td>Selects the rendering approach for the output type and tests the options.</td>
           <td>Chosen narrative, model, output type</td>
-          <td>Rendering decision</td>
-          <td class="chk"><div><b>You:</b> pick the option.</div><div>No assistant check defined yet.</div></td>
+          <td>Rendering decision, with the form of the data for each node</td>
+          <td class="chk"><div><b>Assistant:</b> coverage test of every node, then a low-fidelity test. The brief conflict check runs after this step.</div><div><b>You:</b> pick the option.</div></td>
         </tr>
         <tr>
-          <td><span class="pill">Step 6</span><br><span class="sk">infographic-build</span></td>
+          <td><span class="pill">Step 6</span><br><span class="sk"><a href="skills/infographic-build/">infographic-build</a></span></td>
           <td>Builds the visualisation.</td>
           <td>Model, rendering decision</td>
           <td>The visualisation</td>
-          <td class="chk"><div><b>Assistant:</b> reverse storyboarding (work out the narrative from the finished visual and compare it with the message).</div></td>
+          <td class="chk"><div><b>Assistant:</b> reverse storyboarding, done blind (the main point of each part, written from the finished work before reading the record, then compared with the narrative).</div><div><b>Assistant:</b> each claim on the page matches what its source says.</div></td>
         </tr>
         <tr>
-          <td><span class="pill">Step 7</span><br><span class="sk">infographic-validation</span></td>
+          <td><span class="pill">Step 7</span><br><span class="sk"><a href="skills/infographic-validation/">infographic-validation</a></span></td>
           <td>Communication, sharing and workshop validation.</td>
           <td>Everything in the record</td>
           <td>Feedback log, and the loop to run if feedback requires one</td>
-          <td class="chk"><div><b>Assistant:</b> source and traceability checks on the finished visual.</div><div><b>You:</b> a reader with no context, and the workshop.</div></td>
+          <td class="chk"><div><b>Assistant:</b> source and traceability checks, and a presentation review.</div><div><b>You:</b> a reader with no context, and the workshop.</div><div>A wrong brief is escalated to you. A title change is fixed in place and is not a loop.</div></td>
         </tr>
       </tbody>
     </table>
@@ -406,19 +444,32 @@ ul.open li { margin-bottom: var(--space-sm); }
       <tbody>
         <tr><td>Where the file goes</td><td>The skill review card in claude.ai, one SKILL.md per skill. Claude Code reads <code>.claude/skills</code>.</td><td><code>.github/skills</code>, <code>.claude/skills</code> or <code>.agents/skills</code> in a repository, or <code>~/.copilot/skills</code> for personal use.</td></tr>
         <tr><td>How a skill starts</td><td>Claude matches the task to the skill description.</td><td>Copilot matches the task to the skill description in the same way.</td></tr>
-        <tr><td>Optional extras, not needed for the core</td><td>Claude Code can stop step skills starting by themselves, so only the orchestrator starts them.</td><td>A custom agent with handoffs could run the sequence. I have not confirmed this in GitHub's own documentation.</td></tr>
+        <tr><td>Optional extras, not needed for the core</td><td>Claude Code can stop step skills starting by themselves, so only the orchestrator starts them.</td><td>A custom agent with handoffs could run the sequence. This is not confirmed in GitHub's documentation.</td></tr>
       </tbody>
     </table>
   </div>
   <p class="note">Because step skills cannot be switched off in the portable format, each step description begins by saying it is one step of the infographic process and is started through <span class="sk">infographic-process</span>.</p>
 
+  <h2>Documents</h2>
+  <ul class="docs">
+    <li><a href="readme/">README</a><p>What the repository contains, how to install the skills in Claude and in GitHub Copilot, and the current status.</p></li>
+    <li><a href="design-notes/">Design notes</a><p>The reasoning behind the order of steps, the loops, the output types and the checks, and which parts rest on a named source.</p></li>
+    <li><a href="docs/test-run-1/">Test run 1</a><p>The first run on a real brief: what ran, what did not, and the six gaps that became edits to the skills.</p></li>
+  </ul>
+
   <h2>Open items</h2>
   <ul class="open">
+    <li>Step 2 as a skill. It is built elsewhere and has not been run in this process yet.</li>
+    <li>The six loops, the loop limit and escalation. Test run 1 did not trigger a loop.</li>
+    <li>The people checks (a reader with no context, and the workshop), and use in GitHub Copilot. Whether skills are enabled in your Copilot plan and in VS Code is also unknown.</li>
     <li>The exact name of the analytical techniques catalogue, so the orchestrator can call it. It also needs a copy in the Copilot repository.</li>
     <li>Whether steps 3 and 4 stay as separate skills. They are the most likely to hand work back and forth, so merge them if testing shows that.</li>
     <li>The three boundary questions on the output typology (concept diagrams, data art and live presentations), which affect step 5.</li>
-    <li>Whether skills are enabled in your Copilot plan and in VS Code.</li>
   </ul>
+
+  <footer>
+    Source: <a href="https://github.com/puneetsyaloutlook/infographic">github.com/puneetsyaloutlook/infographic</a>. The skills are in <code>.claude/skills</code>. This page and the rendered documents are built from the repository files on each deploy.
+  </footer>
 </main>
 </body>
 </html>

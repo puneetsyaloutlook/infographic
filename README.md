@@ -13,7 +13,8 @@ A set of skills that runs a standard process for building an infographic or stor
 | `.claude/skills/infographic-rendering/` | Step 5: choosing and testing the rendering approach. |
 | `.claude/skills/infographic-build/` | Step 6: building the visualisation. |
 | `.claude/skills/infographic-validation/` | Step 7: checks, sharing and workshop validation. |
-| `docs/skill-map.html` | The skill map: how the skills connect, the order and the loops. Open it in a browser. |
+| `index.html` | The skill map: how the skills connect, the order and the loops. Open it in a browser, or deploy the repository on Vercel. |
+| `build.mjs`, `package.json`, `vercel.json` | The build that renders the markdown files as pages beside the map. Run `npm install` then `npm run build`. The output goes to `dist/`. |
 | `DESIGN-NOTES.md` | Which parts of the design rest on a source and which are inference. |
 
 Step 2 (analysis) is not in this repository. It uses your own analytical techniques catalogue skill, which the orchestrator looks for by its description and asks you for at intake.
